@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saydalety.example/schemas/medicine.schema.json",
+  "title": "Saydalety medicine record",
+  "description": "A medicine record. Publish only after source verification and qualified review.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "brand_name_ar",
+    "active_ingredients",
+    "dosage_form",
+    "strength",
+    "market",
+    "verification"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "brand_name_ar": {
+      "type": "string",
+      "minLength": 1
+    },
+    "brand_name_en": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "manufacturer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "registration_number_egypt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Egyptian registration identifier, when verified from an authoritative source."
+    },
+    "active_ingredients": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "strength": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "dosage_form": {
+      "type": "string",
+      "description": "e.g. tablet, capsule, oral solution; use a controlled vocabulary in production."
+    },
+    "strength": {
+      "type": "string"
+    },
+    "route": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pack_size": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "approved_uses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Only indications supported by the cited approved product information."
+    },
+    "dosage_information": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Transcribe/abstract only from authoritative product information; requires clinical review."
+    },
+    "contraindications": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings_precautions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "adverse_effects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "interactions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pregnancy_lactation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "storage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "price_egp": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "price_checked_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "price_source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "market": {
+      "const": "EG"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "claim_fields"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "claim_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "checked_at"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "draft",
+            "source_checked",
+            "clinically_reviewed",
+            "published",
+            "withdrawn"
+          ]
+        },
+        "checked_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reviewer_role": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "review_notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
