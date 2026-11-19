@@ -1,0 +1,44 @@
+{
+  "catalog_name": "Egypt human medicines catalogue",
+  "market": "EG",
+  "scope": {
+    "include": [
+      "All human medicinal products marketed or officially registered in Egypt, whether locally manufactured or imported",
+      "Prescription and non-prescription medicines",
+      "Branded and generic products",
+      "All distinct strengths, dosage forms, routes and pack presentations",
+      "Single-ingredient and combination products",
+      "Locally marketed vaccines and biological medicines where authoritative product data is available"
+    ],
+    "exclude_or_separate": [
+      "Veterinary medicines (separate catalogue)",
+      "Medical devices, cosmetics and personal-care products (separate catalogue)",
+      "Food supplements and herbal products unless classified and verified as medicines by the relevant Egyptian authority"
+    ],
+    "identity_rule": "Each distinct Egyptian marketed product, strength, dosage form and pack presentation must be independently identifiable. Do not merge products merely because they share an active ingredient."
+  },
+  "coverage_status": {
+    "status": "foundation_only_no_verified_products_imported",
+    "verified_product_count": 0,
+    "last_checked": "2026-11-19",
+    "note": "Zero means no product records have yet passed source and clinical review in this repository. It does not mean zero medicines exist in Egypt."
+  },
+  "ingestion_requirements": [
+    "Obtain an authoritative product list or permitted data feed from the Egyptian Drug Authority or another legally authorized source.",
+    "Confirm terms of use, licence, API/bulk-download permission and attribution requirements before ingestion.",
+    "Preserve the source's original product identifiers and record source snapshots and import dates.",
+    "Normalize Arabic/English trade names, ingredient names, strengths, dosage forms and manufacturers without losing original values.",
+    "Deduplicate using regulatory identifier where available plus manufacturer, ingredients, strength, form and pack presentation.",
+    "Keep unverified candidates out of public search until product identity and evidence are reviewed.",
+    "Maintain dated price observations separately from stable product identity.",
+    "Run automated schema validation and human pharmacist review before publication."
+  ],
+  "search_requirements": [
+    "Search by Arabic or English brand name",
+    "Search by active ingredient (Arabic transliteration and INN)",
+    "Search by manufacturer",
+    "Filter by strength, dosage form and route",
+    "Support common spelling variants and aliases",
+    "Clearly distinguish exact same-ingredient alternatives from therapeutic alternatives"
+  ]
+}
