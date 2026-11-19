@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Saydalety source registry record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_id",
+    "publisher",
+    "jurisdiction",
+    "source_type",
+    "verification_status",
+    "permitted_use_status",
+    "checked_at",
+    "supports_fields"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "title": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "jurisdiction": {
+      "const": "EG"
+    },
+    "source_type": {
+      "enum": [
+        "regulatory_database",
+        "official_product_leaflet",
+        "official_price_list",
+        "manufacturer_document",
+        "peer_reviewed_reference",
+        "other"
+      ]
+    },
+    "verification_status": {
+      "enum": [
+        "candidate_unchecked",
+        "access_verified",
+        "content_verified",
+        "unavailable",
+        "superseded"
+      ]
+    },
+    "permitted_use_status": {
+      "enum": [
+        "not_reviewed",
+        "permission_confirmed",
+        "open_license_confirmed",
+        "permission_required",
+        "prohibited",
+        "unknown"
+      ]
+    },
+    "checked_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "supports_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_reference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
