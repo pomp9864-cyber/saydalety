@@ -23,6 +23,12 @@ h1{font-size:clamp(37px,5.2vw,61px);line-height:1.18;letter-spacing:-1px;color:#
 .searchbox{max-width:650px;display:flex;align-items:center;gap:8px;padding:7px;background:#fff;border:1px solid #dcebe3;border-radius:17px;box-shadow:0 13px 35px #174b3510}
 .searchbox input{min-width:0;flex:1;border:0;outline:0;padding:12px 14px;font:500 16px Tajawal;color:var(--ink)}.searchbox button{border:0;border-radius:12px;background:var(--green);color:white;padding:13px 25px;font:700 16px Tajawal;cursor:pointer}
 .search-hint{font-size:13px;color:#7b9187;margin:10px 5px 0}
+.results{display:none;margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 30px #174b3509}
+.results.show{display:block}.results-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.results-head h2{font-size:22px;margin:0}.result-count{color:var(--muted);font-size:14px}
+.drug-list{display:grid;gap:11px}.drug{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fcfefd}.drug h3{font-size:19px;margin:0 0 5px;color:var(--deep)}.drug p{margin:4px 0;color:#587268;line-height:1.6;font-size:14px}.drug .price{font-weight:800;color:var(--green);font-size:17px}.drug .meta{font-size:12px;color:#84958d}
+.search-status{padding:15px;color:var(--muted);text-align:center}.source-note{font-size:12px;color:#809187;line-height:1.7;margin-top:15px}
+.searchbox button:disabled{opacity:.6;cursor:wait}
+
 .hero-art{display:grid;place-items:center;min-height:290px}
 .emblem-card{width:min(100%,330px);aspect-ratio:1;border-radius:48% 52% 50% 50%;display:grid;place-items:center;position:relative;background:radial-gradient(circle at 48% 38%,#fff 0,#f5fbf7 47%,#dcefe5 100%);box-shadow:0 24px 65px #164c351c,inset 0 0 0 1px #ffffff}
 .emblem-card:before{content:"";position:absolute;inset:18px;border:1px solid #b6d9c588;border-radius:50%}
@@ -54,7 +60,7 @@ footer{border-top:1px solid var(--line);text-align:center;padding:28px 20px;colo
 </symbol></svg>
 <header><div class="nav"><a class="brand" href="#"><svg class="brand-symbol"><use href="#hygieia"/></svg><span class="brand-name">صيدليتي<span>.</span></span></a><nav><a href="#services">خدماتنا</a><a href="#about">عن صيدليتي</a><a class="nav-cta" href="#medicine-search">ابحث عن دواء</a></nav></div></header>
 <main>
-<section class="hero" id="medicine-search"><div><span class="eyebrow">✦ رفيقك الصحي الذكي</span><h1>معلومة صحية موثوقة،<br>بطريقة أبسط.</h1><p class="hero-copy">افهم أدويتك وصحتك بثقة. صيدليتي بتجمعلك المعرفة الطبية في مكان واحد، بلغة قريبة منك وتجربة سهلة.</p><div class="searchbox"><input id="q" placeholder="اكتب اسم الدواء أو المادة الفعالة…" aria-label="اسم الدواء"><button onclick="searchNotice()">ابحث الآن</button></div><div class="search-hint">ابحث باسم الدواء أو المادة الفعالة — خدمة البحث قيد التجهيز.</div></div>
+<section class="hero" id="medicine-search"><div><span class="eyebrow">✦ رفيقك الصحي الذكي</span><h1>معلومة صحية موثوقة،<br>بطريقة أبسط.</h1><p class="hero-copy">افهم أدويتك وصحتك بثقة. صيدليتي بتجمعلك المعرفة الطبية في مكان واحد، بلغة قريبة منك وتجربة سهلة.</p><form class="searchbox" id="searchForm"><input id="q" placeholder="اكتب اسم الدواء أو المادة الفعالة…" aria-label="اسم الدواء" autocomplete="off"><button id="searchBtn" type="submit">ابحث الآن</button></form><div class="search-hint">ابحث بالعربي أو الإنجليزي أو بالمادة الفعالة أو الباركود.</div><section class="results" id="results" aria-live="polite"><div class="results-head"><h2>نتائج البحث</h2><span class="result-count" id="resultCount"></span></div><div class="drug-list" id="drugList"></div><div class="source-note">مصدر فهرس المنتجات: Egyptian Drug Database by Mahmoud Mohamed — CC BY 4.0. البيانات مجمعة من مصدر طرف ثالث وليست اعتمادًا رسميًا من هيئة الدواء المصرية. الأسعار والتوافر قد يتغيران؛ راجع الصيدلي وتحقق من العبوة والسعر قبل الشراء.</div></section></div>
 <div class="hero-art"><div class="emblem-card"><svg viewBox="0 0 240 240" role="img" aria-label="كأس هيجيا والثعبان"><use href="#hygieia"/></svg></div></div></section>
 <div class="section-head" id="services"><div><h2>كل اللي تحتاجه لصحتك</h2><p>أقسام صيدليتي في مكان واحد</p></div></div>
 <section class="cards">
@@ -65,7 +71,13 @@ footer{border-top:1px solid var(--line);text-align:center;padding:28px 20px;colo
 <article class="card"><div class="card-icon">📚</div><h3>المكتبة الطبية</h3><p>محتوى تعليمي للطلاب والصيادلة وكل المهتمين بالعلوم الطبية.</p></article>
 <article class="card"><div class="card-icon">🏥</div><h3>دليل الصيدليات</h3><p>نعمل على تجهيز دليل يساعدك في الوصول إلى الصيدليات.</p></article>
 </section>
-<div class="trust" id="about"><span>ⓘ</span><div><b>صحتك أمانة.</b> الموقع حاليًا في مرحلة البناء، والمعلومات الطبية والبحث الدوائي لم يتم تفعيلهما بعد. لا تستخدم النموذج الأولي للتشخيص أو اختيار علاج، واستشر الطبيب أو الصيدلي عند الحاجة.</div></div>
+<div class="trust" id="about"><span>ⓘ</span><div><b>صحتك أمانة.</b> دليل البحث يعرض بيانات فهرسة دوائية من مصدر خارجي، وليست بديلًا عن النشرة المعتمدة أو رأي الطبيب والصيدلي. لا يقدم الموقع تشخيصًا أو وصفة علاجية، وقد تكون بعض الأسعار أو البيانات غير محدثة.</div></div>
 </main><footer>© صيدليتي — رفيقك الصحي الذكي</footer>
-<script>function searchNotice(){const q=document.getElementById('q').value.trim();alert(q?'بحث الأدوية لم يُفعّل بعد. نعمل على تجهيز قاعدة بيانات موثوقة.':'اكتب اسم الدواء أولًا.');}</script>
+<script>
+const API='https://eg-drugs-api.mahmoudfalous.workers.dev/v1/search';
+const form=document.getElementById('searchForm'),input=document.getElementById('q'),button=document.getElementById('searchBtn'),box=document.getElementById('results'),list=document.getElementById('drugList'),count=document.getElementById('resultCount');
+function safe(v){return String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderDrug(d){return '<article class="drug"><h3>'+safe(d.arabic||d.name)+'</h3><p><b>الاسم التجاري:</b> '+safe(d.name)+'</p><p><b>المادة الفعالة:</b> '+safe(d.active)+'</p><p><b>الشركة:</b> '+safe(d.company)+'</p><p><b>الاستخدام/التصنيف:</b> '+safe(d.uses||d.description)+'</p><p class="price">السعر المسجل: '+(d.price?safe(d.price)+' جنيه':'غير متاح')+'</p><p class="meta">العبوة: '+safe(d.units)+' — الباركود: '+safe(d.barcode)+'</p></article>';}
+form.addEventListener('submit',async e=>{e.preventDefault();const q=input.value.trim();if(!q){input.focus();return;}box.classList.add('show');list.innerHTML='<div class="search-status">جاري البحث في دليل الأدوية…</div>';count.textContent='';button.disabled=true;button.textContent='بحث…';try{const url=API+'?q='+encodeURIComponent(q)+'&page=1&limit=20';const response=await fetch(url,{headers:{'Accept':'application/json'}});if(!response.ok)throw new Error('HTTP '+response.status);const data=await response.json();const items=Array.isArray(data.results)?data.results:[];count.textContent=data.pagination?.total_results!=null?'عدد النتائج: '+data.pagination.total_results:'';list.innerHTML=items.length?items.map(renderDrug).join(''):'<div class="search-status">مفيش نتائج مطابقة. جرّب الاسم بالإنجليزي أو المادة الفعالة.</div>';}catch(err){list.innerHTML='<div class="search-status">تعذر الاتصال بمصدر بيانات الأدوية حاليًا. جرّب مرة أخرى لاحقًا.</div>';count.textContent='';}finally{button.disabled=false;button.textContent='ابحث الآن';}});
+</script>
 </body></html>
