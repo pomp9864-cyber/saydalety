@@ -11,7 +11,8 @@ const pages = [
   'library.html',
   'health-tips.html',
   'pharmacies.html',
-  'professionals.html'
+  'professionals.html',
+  'about.html'
 ];
 
 for (const page of pages) {
