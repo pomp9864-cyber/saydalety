@@ -1,0 +1,15 @@
+[
+  {
+    "source_id": "eda-official-candidate",
+    "publisher": "Egyptian Drug Authority (EDA)",
+    "title": "Official regulatory information — candidate source",
+    "url": "https://www.edaegypt.gov.eg/",
+    "jurisdiction": "EG",
+    "source_type": "regulatory_database",
+    "verification_status": "candidate_unchecked",
+    "permitted_use_status": "not_reviewed",
+    "checked_at": null,
+    "supports_fields": [],
+    "notes": "Candidate only. Specific medicine search/database endpoint, available fields, update frequency, bulk access and reuse permission have not yet been verified."
+  }
+]
