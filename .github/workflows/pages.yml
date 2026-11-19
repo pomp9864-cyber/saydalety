@@ -23,6 +23,12 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run site smoke checks
+        run: node tests/smoke-check.js
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
