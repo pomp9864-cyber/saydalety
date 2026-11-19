@@ -1,0 +1,15 @@
+{
+  "id": "pharmacy-example-id",
+  "name": "",
+  "phone": null,
+  "governorate": "",
+  "city_or_district": null,
+  "address": "",
+  "location": null,
+  "opening_hours": null,
+  "services": [],
+  "source": "",
+  "last_verified": "",
+  "verification": "pending",
+  "notes": null
+}
