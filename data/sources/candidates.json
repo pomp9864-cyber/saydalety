@@ -11,5 +11,28 @@
     "checked_at": null,
     "supports_fields": [],
     "notes": "Candidate only. Specific medicine search/database endpoint, available fields, update frequency, bulk access and reuse permission have not yet been verified."
+  },
+  {
+    "source_id": "eg-drugs-community-dataset",
+    "publisher": "Mahmoud Mohamed",
+    "title": "Egyptian Drug Database (eg-drugs) — community-maintained dataset and public API",
+    "url": "https://github.com/mahmoudfalous/eg-drugs",
+    "jurisdiction": "EG",
+    "source_type": "third_party_dataset",
+    "verification_status": "candidate_unchecked",
+    "permitted_use_status": "cc_by_4_0_attribution_required",
+    "checked_at": "2026-11-19",
+    "supports_fields": [
+      "trade_name_en",
+      "trade_name_ar",
+      "active_ingredients",
+      "manufacturer",
+      "price_egp",
+      "barcode",
+      "pack_units",
+      "category",
+      "uses"
+    ],
+    "notes": "Repository README states 27,617+ medicines marketed in Egypt and provides CSV/JSON/SQLite/SQL plus a public REST API. Dataset is stated to be CC BY 4.0 with attribution. This is not an official EDA source; underlying field-level provenance, completeness, correctness, price freshness and API uptime have not been independently audited. Website search integration uses the documented public API and must display attribution and third-party-data caveat."
   }
 ]
