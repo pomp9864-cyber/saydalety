@@ -1,0 +1,39 @@
+{
+  "_template": true,
+  "_notice": "Template only — not a real medicine record. Do not publish.",
+  "id": "example-product-id",
+  "brand_name_ar": "",
+  "brand_name_en": null,
+  "manufacturer": null,
+  "registration_number_egypt": null,
+  "active_ingredients": [
+    {
+      "name": "",
+      "strength": null
+    }
+  ],
+  "dosage_form": "",
+  "strength": "",
+  "route": null,
+  "pack_size": null,
+  "approved_uses": [],
+  "dosage_information": null,
+  "contraindications": [],
+  "warnings_precautions": [],
+  "adverse_effects": [],
+  "interactions": [],
+  "pregnancy_lactation": null,
+  "storage": null,
+  "price_egp": null,
+  "price_checked_at": null,
+  "price_source_id": null,
+  "market": "EG",
+  "sources": [],
+  "verification": {
+    "status": "draft",
+    "checked_at": "2026-11-19T00:00:00Z",
+    "reviewer_role": null,
+    "review_notes": ""
+  },
+  "last_updated": "2026-11-19T00:00:00Z"
+}
