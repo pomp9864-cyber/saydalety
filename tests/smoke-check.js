@@ -28,7 +28,8 @@ for (const page of pages) {
 
   const localLinks = [...html.matchAll(/(?:href|src)="([^"]+)"/g)]
     .map(match => match[1])
-    .filter(value => !/^(?:https?:|mailto:|tel:|#|data:|javascript:)/i.test(value));
+    .filter(value => !/^(?:https?:|mailto:|tel:|#|data:|javascript:)/i.test(value))
+    .filter(value => !/[+'`$]/.test(value)); // Ignore href/src values assembled dynamically in JavaScript.
   for (const link of localLinks) {
     const clean = link.split(/[?#]/)[0];
     if (clean) assert.ok(fs.existsSync(clean), page + ': missing local asset ' + clean);
