@@ -44,7 +44,8 @@
         "official_price_list",
         "manufacturer_document",
         "peer_reviewed_reference",
-        "other"
+        "other",
+        "third_party_dataset"
       ]
     },
     "verification_status": {
